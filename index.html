@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <!-- Anzeige Frage -->
+    <div id="display-question"></div>
+    <div class="question">
+      <div class="question-title">Quiz App</div>
+      <div class="quiz-button">
+        <button class="AnwBtn" id="AnwBtn(1)">Antwort 1</button>
+        <button class="AnwBtn" id="AnwBtn(2)">Antwort 2</button>
+        <button class="AnwBtn" id="AnwBtn(3)">Antwort 3</button>
+        <button class="AnwBtn" id="AnwBtn(4)">Antwort 4</button>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <button onclick="renderFunction()" class="footerBtn" id="weiter">
+        Lösung
+      </button>
+      <button onclick="Solution()" class="footerBtn" id="lösung">Weiter</button>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

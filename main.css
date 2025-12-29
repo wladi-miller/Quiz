@@ -1,0 +1,76 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.question {
+  text-align: center;
+  font-size: 2rem;
+  box-shadow: gray 0px 4px 6px -1px, gray 0px 2px 4px -1px;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.question-title {
+  margin-bottom: 1rem;
+}
+.quiz-button {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 1rem 0 1rem;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.footer {
+  margin-top: 2rem;
+}
+.AnwBtn {
+  width: 30rem;
+  height: 60px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  box-shadow: gray 0px 4px 2px -1px, gray 0px 0px 0px 0px;
+}
+.AnwBtn:hover {
+  filter: brightness(90%);
+}
+
+.footerBtn {
+  width: 5rem;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+}
+.footerBtn:hover {
+  filter: brightness(90%);
+}
+
+.corrent {
+  background-color: #4caf50;
+}
+
+.incorrent {
+  background-color: #f44336;
+}
+
+@media (max-width: 1000px) {
+  .AnwBtn {
+    width: 20rem;
+    height: 50px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 660px) {
+  .AnwBtn {
+    width: 10rem;
+    height: 30px;
+    font-size: 1rem;
+  }
+}
