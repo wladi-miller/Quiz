@@ -66,14 +66,19 @@ function renderQuenstion() {
   const questionAnswers = document.createElement("div");
   questionAnswers.classList.add("quiz-button");
 
+  // Antworten hinzufügen
   question.answers.forEach((answer) => {
     const answerDiv = document.createElement("button");
     answerDiv.classList.add("AnwBtn");
     answerDiv.appendChild(document.createTextNode(answer.text));
     questionAnswers.appendChild(answerDiv);
-});
+  });
+  questionDiv.appendChild(questionTitle);
+  questionDiv.appendChild(questionAnswers);
 
-// Next Logik 
+  document.getElementById("display-question").appendChild(questionDiv);
+}
+// Next Logik
 
 //Frage beantworten Funktion
 
