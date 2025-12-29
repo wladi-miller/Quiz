@@ -1,5 +1,5 @@
 //Definition der Fragen und Antworten
-const quizQuestions = [
+const questionData = [
   {
     id: 1,
     question: "Was ist die Hauptstadt von Deutschland?",
@@ -52,8 +52,28 @@ let currentQuestionIndex = [
 ];
 
 // Frage Render Funktion
+function renderQuenstion() {
+  const question = questionData[0];
+  console.log(question);
+  const questionDiv = document.createElement("div");
+  questionDiv.classList.add("question");
 
-// Next Logik
+  const questionTitle = document.createElement("div");
+  questionTitle.classList.add("question-title");
+
+  questionTitle.appendChild(document.createTextNode(question.question));
+
+  const questionAnswers = document.createElement("div");
+  questionAnswers.classList.add("quiz-button");
+
+  question.answers.forEach((answer) => {
+    const answerDiv = document.createElement("button");
+    answerDiv.classList.add("AnwBtn");
+    answerDiv.appendChild(document.createTextNode(answer.text));
+    questionAnswers.appendChild(answerDiv);
+});
+
+// Next Logik 
 
 //Frage beantworten Funktion
 
