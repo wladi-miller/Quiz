@@ -43,16 +43,8 @@ const questionData = [
 ];
 
 // Initialisierung
-let currentQuestionIndex = {
-  id: 0,
-  question: "",
-  answers: [
-    { id: "", text: "", isCorrect: false },
-    { id: "", text: "", isCorrect: false },
-    { id: "", text: "", isCorrect: false },
-    { id: "", text: "", isCorrect: false },
-  ],
-};
+let currentQuestion;
+let currentQuestionPointer = -1;
 
 let ArrayCounter = 0;
 var questionDiv;
@@ -60,9 +52,7 @@ var questionTitle;
 var questionAnswers;
 
 // Frage Render Funktion
-function renderQuenstion() {
-  const question = questionData[ArrayCounter];
-
+function renderQuenstion(question) {
   questionDiv = document.createElement("div");
   questionDiv.classList.add("question");
 
@@ -85,22 +75,17 @@ function renderQuenstion() {
   questionDiv.appendChild(questionAnswers);*/
 
   document.getElementById("display-question").innerHTML = "";
-
-  nextQuestion();
 }
 // Next Logik
 function nextQuestion() {
-  currentQuestionIndex = questionData[ArrayCounter];
-  ArrayCounter++;
-  questionDiv.appendChild(questionTitle);
-  questionDiv.appendChild(questionAnswers);
-
-  document.getElementById("display-question").appendChild(questionDiv);
-
-  console.log(currentQuestionIndex);
-  if (ArrayCounter >= questionData.length) {
-    QuizEnde();
+  if (currentQuestionPointer + 1 <= questionData.length) {
+    currentQuestionPointer++;
+    currentQuestion = questions[currentQuestionPointer];
+  } else {
+    currentQuestionPointer = 0;
+    currentQuestion = questions[currentQuestionPointer];
   }
+  renderQuenstion(currentQuestion);
 }
 
 //Frage beantworten Funktion
@@ -108,15 +93,3 @@ function nextQuestion() {
 // Lösung anzeigen Funktion
 
 // Quiz Ende Funktion
-function QuizEnde() {
-  ArrayCounter = 0;
-  document.getElementById("display-question").innerHTML =
-    "<h2>Quiz Ende! Du hast alle Fragen beantwortet.</h2>";
-  document.getElementById("weiter").style.display = "none";
-  document.getElementById("lösung").style.display = "none";
-  const RestartBtn = document.createElement("button");
-  RestartBtn.classList.add("footerBtn");
-  RestartBtn.appendChild(document.createTextNode("Restart"));
-  RestartBtn.onclick = RestartQuiz;
-  document.querySelector(".footer").appendChild(RestartBtn);
-}
