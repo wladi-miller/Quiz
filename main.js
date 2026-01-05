@@ -4,10 +4,10 @@ const questionData = [
     id: 1,
     question: "Was ist die Hauptstadt von Deutschland?",
     answers: [
-      { id: "a", text: "Berlin", isCorrect: true },
+      { id: "a", text: "Hamburg", isCorrect: false },
       { id: "b", text: "München", isCorrect: false },
       { id: "c", text: "Frankfurt", isCorrect: false },
-      { id: "d", text: "Hamburg", isCorrect: false },
+      { id: "d", text: "Berlin", isCorrect: true },
     ],
   },
   {
@@ -46,22 +46,18 @@ const questionData = [
 let currentQuestion;
 let currentQuestionPointer = -1;
 
-let ArrayCounter = 0;
-var questionDiv;
-var questionTitle;
-var questionAnswers;
-
 // Frage Render Funktion
 function renderQuenstion(question) {
-  questionDiv = document.createElement("div");
+  const questionDiv = document.createElement("div");
+  questionDiv.id = question.id;
   questionDiv.classList.add("question");
 
-  questionTitle = document.createElement("div");
+  const questionTitle = document.createElement("div");
   questionTitle.classList.add("question-title");
 
   questionTitle.appendChild(document.createTextNode(question.question));
 
-  questionAnswers = document.createElement("div");
+  const questionAnswers = document.createElement("div");
   questionAnswers.classList.add("quiz-button");
 
   // Antworten hinzufügen
@@ -69,27 +65,75 @@ function renderQuenstion(question) {
     const answerDiv = document.createElement("button");
     answerDiv.classList.add("AnwBtn");
     answerDiv.appendChild(document.createTextNode(answer.text));
+    answerDiv.onclick = () => answerQuestion(answer);
     questionAnswers.appendChild(answerDiv);
   });
-  /*   questionDiv.appendChild(questionTitle);
-  questionDiv.appendChild(questionAnswers);*/
+  questionDiv.appendChild(questionTitle);
+  questionDiv.appendChild(questionAnswers);
 
-  document.getElementById("display-question").innerHTML = "";
+  document.getElementById("display-question").appendChild(questionDiv);
 }
 // Next Logik
 function nextQuestion() {
+  if (currentQuestion) {
+    document.getElementById(String(currentQuestion.id)).remove();
+  }
   if (currentQuestionPointer + 1 <= questionData.length) {
     currentQuestionPointer++;
-    currentQuestion = questions[currentQuestionPointer];
+    currentQuestion = questionData[currentQuestionPointer];
   } else {
     currentQuestionPointer = 0;
-    currentQuestion = questions[currentQuestionPointer];
+    currentQuestion = questionData[currentQuestionPointer];
   }
   renderQuenstion(currentQuestion);
 }
 
 //Frage beantworten Funktion
+function answerQuestion(answer) {
+  if (answer.isCorrect) {
+    alert("Richtige Antwort!");
+    //Button grün färben
+    const buttons = document.querySelectorAll(".AnwBtn");
+    buttons.forEach((button) => {
+      if (button.textContent === answer.text) {
+        button.style.backgroundColor = "green";
+      }
+    });
+  } else {
+    alert("Falsche Antwort");
+    //Button rot färben
+    const buttons = document.querySelectorAll(".AnwBtn");
+    buttons.forEach((button) => {
+      if (button.textContent === answer.text) {
+        button.style.backgroundColor = "red";
+        //Richtige Antwort grün färben
+        questionData[currentQuestionPointer].answers.forEach((ans) => {
+          if (ans.isCorrect) {
+            buttons.forEach((btn) => {
+              if (btn.textContent === ans.text) {
+                btn.style.backgroundColor = "green";
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+}
 
 // Lösung anzeigen Funktion
+function Solution() {
+  //Richtige Antwort grün färben
+  const buttons = document.querySelectorAll(".AnwBtn");
+  questionData[currentQuestionPointer].answers.forEach((ans) => {
+    if (ans.isCorrect) {
+      buttons.forEach((btn) => {
+        if (btn.textContent === ans.text) {
+          btn.style.backgroundColor = "green";
+        }
+      });
+    }
+  });
+}
 
 // Quiz Ende Funktion
