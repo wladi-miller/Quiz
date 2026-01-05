@@ -96,7 +96,8 @@ function answerQuestion(answer) {
     const buttons = document.querySelectorAll(".AnwBtn");
     buttons.forEach((button) => {
       if (button.textContent === answer.text) {
-        button.style.backgroundColor = "green";
+        /*  button.style.backgroundColor = "green"; */
+        button.classList.add("correct");
       }
     });
   } else {
@@ -105,13 +106,13 @@ function answerQuestion(answer) {
     const buttons = document.querySelectorAll(".AnwBtn");
     buttons.forEach((button) => {
       if (button.textContent === answer.text) {
-        button.style.backgroundColor = "red";
+        button.classList.add("incorrect");
         //Richtige Antwort grün färben
         questionData[currentQuestionPointer].answers.forEach((ans) => {
           if (ans.isCorrect) {
             buttons.forEach((btn) => {
               if (btn.textContent === ans.text) {
-                btn.style.backgroundColor = "green";
+                btn.classList.add("correct");
               }
             });
           }
@@ -129,11 +130,9 @@ function Solution() {
     if (ans.isCorrect) {
       buttons.forEach((btn) => {
         if (btn.textContent === ans.text) {
-          btn.style.backgroundColor = "green";
+          btn.classList.add("correct");
         }
       });
     }
   });
 }
-
-// Quiz Ende Funktion

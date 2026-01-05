@@ -52,11 +52,11 @@ body {
   filter: brightness(90%);
 }
 
-.corrent {
+.correct {
   background-color: #4caf50;
 }
 
-.incorrent {
+.incorrect {
   background-color: #f44336;
 }
 
